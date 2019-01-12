@@ -116,8 +116,8 @@ class UserController extends Controller
                 $request->session()->put('u_token',$token);
                 $request->session()->put('uid',$u->uid);
 
-                header("Refresh:3;url=/user/center");
-                echo "登录成功";
+                header("Refresh:3;url=/goods");
+                echo "登录成功,正在跳转到商品首页";
             }else{
                 die("密码不正确");
             }
@@ -130,24 +130,9 @@ class UserController extends Controller
 
     public function center(Request $request)
     {
-        if(!empty($_COOKIE['token'])){
-            if($_COOKIE['token'] != $request->session()->get('u_token')){
-                header('Refresh:2;url=/user/login');
-                die("非法请求");
-            }
-        }
-
-
-
-
-        if(empty($_COOKIE['nick_name'])){
-            header('Refresh:2;url=/user/login');
-            echo '请先登录';
-            exit;
-        }else{
-            echo $_COOKIE['nick_name'] . ' ,欢迎回来';
-//            header('Refresh:2;url=/goods');
-        }
+        $data = [];
+        return view('users.center',$data);
     }
+
 
 }

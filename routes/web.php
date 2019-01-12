@@ -64,14 +64,9 @@ Route::get('/user/center','User\UserController@center');        //个人中心
 
 //模板引入静态文件
 Route::get('/mvc/test1','Mvc\MvcController@test1');
-
 Route::get('/mvc/bst','Mvc\MvcController@bst');
 
 
-//Cookie
-//Route::get('/test/cookie1','Test\TestController@cookieTest1');
-//Route::get('/test/cookie2','Test\TestController@cookieTest2');
-//Route::get('/test/session','Test\TestController@sessionTest');
 
 //Test
 Route::get('/test/cookie1','Test\TestController@cookieTest1');
@@ -100,3 +95,9 @@ Route::get('/order/add','Order\IndexController@add');                           
 Route::get('/order/add2/{goods_id}','Order\IndexController@add2');              //下单
 Route::get('/order/list','Order\IndexController@list');                         //展示
 Route::get('/order/del/{id}','Order\IndexController@del');                      //删除
+
+
+
+//支付
+Route::get('/pay/{id}','Pay\IndexController@order')->middleware('check.login.token');         //订单支付
+
