@@ -61,7 +61,6 @@ class AlipayController extends Controller
             'notify_url'   => $this->notify_url,
             'biz_content'   => json_encode($bizcont),
         ];
-
         $sign = $this->rsaSign($data);
         $data['sign'] = $sign;
         $param_str = '?';
@@ -143,8 +142,6 @@ class AlipayController extends Controller
                 $data = mb_convert_encoding($data, $targetCharset, $fileType);
             }
         }
-
-
         return $data;
     }
 }

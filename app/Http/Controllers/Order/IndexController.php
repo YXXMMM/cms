@@ -104,6 +104,8 @@ class IndexController extends Controller
         }
 
         echo '下单成功,订单号：'.$oid .' 跳转支付';
+        header("Refresh:3;url=/pay/alipay/test");
+
 
         //清空购物车
         CartModel::where(['uid'=>$this->uid],['goods_id'=>$v['goods_id']])->delete();
