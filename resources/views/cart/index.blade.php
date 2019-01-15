@@ -16,7 +16,7 @@
                     <td>¥ {{$v['price'] / 100}}</td>
                     <td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
                     <td>
-                        <a href="/cart/del2/{{$v['goods_id']}}" class="del_goods">删除</a>||<a href="/order/add2/{{$v['goods_id']}}">下单</a>
+                        <a href="/cart/del2/{{$v['goods_id']}}" class="del_goods">删除</a>
                     </td>
                 </tr>
             @endforeach

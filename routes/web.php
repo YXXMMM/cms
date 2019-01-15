@@ -92,16 +92,15 @@ Route::get('/goods','Goods\IndexController@indexList');          //商品展示
 
 //订单
 Route::get('/order/add','Order\IndexController@add');                           //全部下单
-Route::get('/order/add2/{goods_id}','Order\IndexController@add2');              //下单
 Route::get('/order/list','Order\IndexController@list');                         //展示
 Route::get('/order/del/{id}','Order\IndexController@del');                      //删除
 
 
 
 //支付
-Route::get('/pay/{id}','Pay\IndexController@order')->middleware('check.login.token');         //订单支付
 Route::get('/pay/alipay/test','Pay\AlipayController@test');         //订单支付
-Route::get('/pay/o/{oid}','Pay\IndexController@order')->middleware('check.login.token');         //订单支付
-Route::post('/pay/alipay/notify','Pay\AlipayController@notify');        //支付宝支付 通知回调
+Route::get('/pay/o/{id}','Pay\AlipayController@pay')->middleware('check.login.token');         //订单支付
+Route::post('/pay/alipay/notify','Pay\AlipayController@aliNotify');        //支付宝支付 通知回调
+Route::get('/pay/alipay/return','Pay\AlipayController@aliReturn');          //支付宝支付 同步通知回调
 
 
