@@ -34,8 +34,6 @@ class IndexController extends Controller
 
 
         //支付成功 修改支付时间
-        OrderModel::where(['id'=>$id])->update(['pay_time'=>time(),'pay_amount'=>rand(1111,9999),'is_pay'=>1]);
-
         //增加消费积分 ...
 
         header('Refresh:2;url=/order/list');
