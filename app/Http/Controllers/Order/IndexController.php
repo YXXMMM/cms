@@ -13,6 +13,7 @@ class IndexController extends Controller
 {
     //
 
+
     public function index()
     {
         echo __METHOD__;
