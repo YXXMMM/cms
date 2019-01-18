@@ -84,9 +84,9 @@ class GoodsController extends Controller
     {
 
         $response = [
-            'status' => true,
-            'message'   => 'ok'
-        ];
+        'status' => true,
+        'message'   => 'ok'
+    ];
         return $response;
     }
 
