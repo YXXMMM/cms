@@ -108,3 +108,8 @@ Route::get('/pay/alipay/return','Pay\AlipayController@aliReturn');          //æ”
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('/upload','Goods\IndexController@uploadIndex');
+Route::post('/goods/upload/pdf','Goods\IndexController@uploadPDF');
