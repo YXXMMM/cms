@@ -2,6 +2,7 @@
 @extends('layouts.bst')
 @section('content')
     <div class="container">
+        <input type="text" id="text"><input type="button" value="搜索" id="text_but">
         <table class="table table-striped" >
             <tr>
                 <td>商品名称</td>
@@ -23,4 +24,5 @@
 
 @section('footer')
     @parent
+    <script src="{{URL::asset('/js/goods/goodslist.js')}}"></script>
 @endsection

@@ -88,6 +88,7 @@ Route::get('/cart/del2/{goods_id}','Cart\IndexController@del2')->middleware('che
 //商品
 Route::get('/goods/{goods_id}','Goods\IndexController@index');          //商品详情
 Route::get('/goods','Goods\IndexController@indexList');          //商品展示
+Route::post('/goods/indexList2','Goods\IndexController@indexList2');          //商品搜索展示
 
 
 //订单
@@ -113,3 +114,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/upload','Goods\IndexController@uploadIndex');
 Route::post('/goods/upload/pdf','Goods\IndexController@uploadPDF');
+
+//微信
+Route::get('/weixin/test','Weixin\WeixinController@test');
+Route::get('/weixin/valid','Weixin\WeixinController@validToken');
+Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
+Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收微信服务器事件推送
+Route::post('/weixin/valid','Weixin\WeixinController@validToken');
+

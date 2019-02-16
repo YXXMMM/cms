@@ -8,8 +8,7 @@ use App\Http\Controllers\Controller;
 
 
 use DB;
-use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\URL;
 class TestController extends Controller
 {
     //
@@ -103,9 +102,11 @@ class TestController extends Controller
 
     public function sessionTest(Request $request)
     {
+        $request->session()->put('aaa','aaaaaa');
         echo '<pre>';print_r($request->session()->all());echo '</pre>';
         //echo '<pre>';print_r(Session::all());echo '</pre>';
     }
+
     public function mid1()
     {
         echo __METHOD__;
@@ -115,4 +116,35 @@ class TestController extends Controller
     {
         echo __METHOD__;
     }
+
+
+    public function guzzleTest()
+    {
+
+        echo '<pre>';print_r($_POST);echo '</pre>';
+        //var_dump($_GET);die;
+        echo json_encode($_GET);
+        //echo '<pre>';print_r($_GET);echo '</pre>';
+        //echo 'Hello GUZZLE';
+    }
+
+    public function url1()
+    {
+
+        //echo '<pre>';print_r($_SERVER);echo '</pre>';
+        echo url('hello');echo '</br>';
+        echo url('/hello');echo '</br>';
+        echo url()->current(); echo '</br>';     //当前访问的url
+        echo url()->full();echo '</br>';
+        echo url()->previous();echo '</br>';
+        echo '<hr>';
+        echo URL::current();
+
+    }
+
+    public function mid3()
+    {
+        echo __METHOD__;
+    }
+
 }
