@@ -153,8 +153,20 @@ class WeixinController extends Controller
             "button" => [
                 [
                     "type" => "view",      // view类型 跳转指定 URL
-                    "name" => "Lening222",
+                    "name" => "菜单",
                     "url" => "https://www.baidu.com"
+                ],
+                [
+                    [
+                        "type" => "view",      // view类型 跳转指定 URL
+                        "name" => "音乐",
+                        "url" => "https://www.baidu.com"
+                    ],
+                    [
+                        "type" => "view",      // view类型 跳转指定 URL
+                        "name" => "地图",
+                        "url" => "https://www.baidu.com"
+                    ],
                 ]
             ]
         ];
