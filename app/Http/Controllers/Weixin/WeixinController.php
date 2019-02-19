@@ -179,7 +179,12 @@ class WeixinController extends Controller
                              "url" => "https://www.baidu.com"
                          ]
                      ]
-                 ]
+                 ],
+                [
+                    "type"  => "click",      // click类型
+                    "name"  => "客服01",
+                    "key"   => "kefu01"
+                ]
             ]
         ];
 
