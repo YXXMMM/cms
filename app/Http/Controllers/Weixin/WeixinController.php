@@ -144,11 +144,11 @@ class WeixinController extends Controller
         $data = [
             "button"    => [
                 [
-                    "name"=>"菜单",
+                    "name"=>"秀歌",
                     "sub_button"=>[
                         [
                             "type"  => "click",      // click类型
-                            "name"  => "音乐",
+                            "name"  => "阴雨天",
                             "key"   => "kefu01"
                         ]
                     ]
