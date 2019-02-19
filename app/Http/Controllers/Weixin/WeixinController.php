@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Redis;
-
+use GuzzleHttp;
 class WeixinController extends Controller
 {
     //
