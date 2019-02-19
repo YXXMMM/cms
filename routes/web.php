@@ -122,3 +122,5 @@ Route::get('/weixin/valid1','Weixin\WeixinController@validToken1');
 Route::post('/weixin/valid1','Weixin\WeixinController@wxEvent');        //接收微信服务器事件推送
 Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 
+
+Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');     //创建菜单
