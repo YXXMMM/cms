@@ -69,7 +69,7 @@ class WeixinController extends Controller
                 $this->dlVoice($xml->MediaId);
             }
 
-            exit();
+            //exit();
         }
 
 
