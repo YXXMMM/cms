@@ -126,3 +126,4 @@ Route::post('/weixin/valid','Weixin\WeixinController@validToken');
 
 
 Route::get('/weixin/create_menu','Weixin\WeixinController@createMenu');     //创建菜单
+Route::get('/weixin/send','Weixin\WeixinController@sendTextAll');   //群发消息

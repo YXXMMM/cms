@@ -111,6 +111,38 @@ class WeixinController extends Controller
     }
 
     /**
+     * 群发消息
+     */
+    public function sendTextAll(){
+        $url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token='.$this->getWXAccessToken();
+        $client = new GuzzleHttp\Client(['base_uri' => $url]);
+        $data=[
+            "filter"=>[
+                "is_to_all"=>true,
+                "tag_id"=>2
+            ],
+            "text"=>[
+                "content"=>"aaaaaaaaaaaa"
+            ],
+            "msgtype"=>"text"
+        ];
+        $r = $client->request('POST', $url, [
+            'body' => json_encode($data,JSON_UNESCAPED_UNICODE)
+        ]);
+        // 3 解析微信接口返回信息
+
+        $response_arr = json_decode($r->getBody(),true);
+        var_dump($response_arr);
+        if($response_arr['errcode'] == 0){
+            echo "群发成功";
+        }else{
+            echo "群发失败，请重试";echo '</br>';
+            echo $response_arr['errmsg'];
+        }
+    }
+
+
+    /**
      * 客服处理
      * @param $openid   用户openid
      * @param $from     开发者公众号id 非 APPID
