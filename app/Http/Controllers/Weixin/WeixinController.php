@@ -70,6 +70,11 @@ class WeixinController extends Controller
                 $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. date('Y-m-d H:i:s') .']]></Content></xml>';
                 echo $xml_response;
 
+            }elseif($xml->MsgType=='video'){        //处理视频信息
+                $this->dlVideo($xml->MediaId);
+                $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. date('Y-m-d H:i:s') .']]></Content></xml>';
+                echo $xml_response;
+
             }elseif($xml->MsgType=='event'){        //判断事件类型
 
                 if($event=='subscribe'){                        //扫码关注事件
