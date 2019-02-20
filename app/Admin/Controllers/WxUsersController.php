@@ -10,9 +10,9 @@ use Encore\Admin\Layout\Row;
 use Encore\Admin\Grid;
 use Encore\Admin\Form;
 
-use App\Model\GoodsModel;
+use App\Model\P_wx_usersModel;
 
-class GoodsController extends Controller
+class WxUsersController extends Controller
 {
     public function index(Content $content)
     {
