@@ -61,19 +61,55 @@ class WeixinController extends Controller
             }elseif($xml->MsgType=='image'){       //用户发送图片信息
                 //视业务需求是否需要下载保存图片
                 if(1){  //下载图片素材
-                    $this->dlWxImg($xml->MediaId);
+                    $file_name=$this->dlWxImg($xml->MediaId);
                     $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. date('Y-m-d H:i:s') .']]></Content></xml>';
                     echo $xml_response;
+                    //写入数据库
+                    $data=[
+                        'openid' => $openid,
+                        'add_time' => time(),
+                        'msg_type' => 'image',
+                        'media_id' => $xml->MediaId,
+                        'format' => $xml->Format,
+                        'msg_id' => $xml->MsgId,
+                        'local_file_name' => $file_name
+                    ];
+                    $n_id=WeixinMedia::insertGetId($data);
+                    var_dump($n_id);
                 }
             }elseif($xml->MsgType=='voice'){        //处理语音信息
-                $this->dlVoice($xml->MediaId);
+                $file_name=$this->dlVoice($xml->MediaId);
                 $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. date('Y-m-d H:i:s') .']]></Content></xml>';
                 echo $xml_response;
+                //写入数据库
+                $data=[
+                    'openid' => $openid,
+                    'add_time' => time(),
+                    'msg_type' => 'voice',
+                    'media_id' => $xml->MediaId,
+                    'format' => $xml->Format,
+                    'msg_id' => $xml->MsgId,
+                    'local_file_name' => $file_name
+                ];
+                $n_id=WeixinMedia::insertGetId($data);
+                var_dump($n_id);
 
             }elseif($xml->MsgType=='video'){        //处理视频信息
-                $this->dlVideo($xml->MediaId);
+                $file_name=$this->dlVideo($xml->MediaId);
                 $xml_response = '<xml><ToUserName><![CDATA['.$openid.']]></ToUserName><FromUserName><![CDATA['.$xml->ToUserName.']]></FromUserName><CreateTime>'.time().'</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA['. date('Y-m-d H:i:s') .']]></Content></xml>';
                 echo $xml_response;
+                //写入数据库
+                $data=[
+                    'openid' => $openid,
+                    'add_time' => time(),
+                    'msg_type' => 'video',
+                    'media_id' => $xml->MediaId,
+                    'format' => $xml->Format,
+                    'msg_id' => $xml->MsgId,
+                    'local_file_name' => $file_name
+                ];
+                $n_id=WeixinMedia::insertGetId($data);
+                var_dump($n_id);
 
             }elseif($xml->MsgType=='event'){        //判断事件类型
 
@@ -182,6 +218,7 @@ class WeixinController extends Controller
         }else{      //保存失败
             //echo 'NO';
         }
+        return $file_name;
 
     }
 
@@ -209,6 +246,8 @@ class WeixinController extends Controller
         }else{      //保存失败
 
         }
+
+        return $file_name;
     }
 
     /**
@@ -235,6 +274,8 @@ class WeixinController extends Controller
         }else{      //保存失败
 
         }
+
+        return $file_name;
     }
 
 
