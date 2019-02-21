@@ -91,9 +91,9 @@ class WeixinMediaController extends Controller
         $grid->msg_id('Msg id');
         $grid->local_file_name('Local file name')->display(function($img){
             if(substr($img,-3,3)=='mp4'){
-                $imgs='<a harf="/wx/voice/'.$img.'">观看视频</a>';
+                $imgs='<a href="/wx/voice/'.$img.'">观看视频</a>';
             }elseif(substr($img,-3,3)=='amr'){
-                $imgs='<a harf="/wx/voice/'.$img.'">试听语音</a>';
+                $imgs='<a href="/wx/voice/'.$img.'">试听语音</a>';
             }else{
                 $imgs='<img src="/wx/images/'.$img.'" width=80px;height=80px;> ';
             }
