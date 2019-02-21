@@ -24,7 +24,7 @@ class WxUsersController extends Controller
 
     protected function grid()
     {
-        $grid = new Grid(new P_wx_userModel());
+        $grid = new Grid(new P_wx_usersModel());
 
         $grid->model()->orderBy('id','desc');     //倒序排序
         $grid->add_time('添加时间')->display(function($time){
