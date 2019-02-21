@@ -99,7 +99,6 @@ class WeixinMediaController extends Controller
             }
             return $imgs;
         });
-        $grid->local_file_path('Local file path');
 
         return $grid;
     }
@@ -119,10 +118,8 @@ class WeixinMediaController extends Controller
         $show->add_time('Add time');
         $show->msg_type('Msg type');
         $show->media_id('Media id');
-        $show->format('Format');
         $show->msg_id('Msg id');
         $show->local_file_name('Local file name');
-        $show->local_file_path('Local file path');
 
         return $show;
     }
@@ -140,11 +137,8 @@ class WeixinMediaController extends Controller
         $form->number('add_time', 'Add time');
         $form->text('msg_type', 'Msg type');
         $form->text('media_id', 'Media id');
-        $form->text('format', 'Format');
         $form->text('msg_id', 'Msg id');
         $form->text('local_file_name', 'Local file name');
-        $form->text('local_file_path', 'Local file path');
-
         return $form;
     }
 }

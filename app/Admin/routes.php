@@ -14,7 +14,10 @@ Route::group([
 
     $router->resource('/goods',GoodsController::class);
     $router->resource('/users',UsersController::class);
-    $router->resource('/wxusers',WxUsersController::class);
-    $router->resource('/media',WeixinMediaController::class);
+    $router->resource('/wxusers',WxUsersController::class);//微信用户管理
+    $router->resource('/media',WeixinMediaController::class);//素材管理
+
+    $router->get('/weixin/sendmsg','WeixinController@sendMsgView');      //
+    $router->post('/weixin/sendmsg','WeixinController@sendMsg');
 
 });
