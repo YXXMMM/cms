@@ -10,7 +10,7 @@ use Encore\Admin\Layout\Row;
 use Encore\Admin\Grid;
 use Encore\Admin\Form;
 
-use App\Model\P_wx_usersModel;
+use App\Model\UsersModel;
 
 class WxUsersController extends Controller
 {
@@ -24,7 +24,7 @@ class WxUsersController extends Controller
 
     protected function grid()
     {
-        $grid = new Grid(new P_wx_usersModel());
+        $grid = new Grid(new UsersModel());
 
         $grid->model()->orderBy('id','desc');     //倒序排序
         $grid->add_time('添加时间')->display(function($time){

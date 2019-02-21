@@ -4,9 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class P_wx_usersModelModel extends Model
+class UsersModel extends Model
 {
     //
-    public $table = 'p_wx_user';
+    public $table = 'p_wx_users';
     public $timestamps = false;
 }
