@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Storage;
-
+use App\Model\WeixinMedia;
 class WeixinController extends Controller
 {
     //
