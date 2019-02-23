@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Weixin;
 
+use App\Model\WeixinChatModel;
 use App\Model\WeixinUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -462,7 +463,10 @@ class WeixinController extends Controller
 
     }
 
-
+    public function http405()
+    {
+        echo __METHOD__;
+    }
 
 
 
@@ -504,4 +508,41 @@ class WeixinController extends Controller
 
 
     }
+
+
+    /**
+     * 微信客服聊天
+     */
+    public function chatView()
+    {
+        $data = [
+            'openid'    => 'oLreB1jAnJFzV_8AGWUZlfuaoQto'
+        ];
+        return view('weixin.chat',$data);
+    }
+
+    public function getChatMsg()
+    {
+        $openid = $_GET['openid'];  //用户openid
+        $pos = $_GET['pos'];        //上次聊天位置
+        $msg = WeixinChatModel::where(['openid'=>$openid])->where('id','>',$pos)->first();
+        //$msg = WeixinChatModel::where(['openid'=>$openid])->where('id','>',$pos)->get();
+        if($msg){
+            $response = [
+                'errno' => 0,
+                'data'  => $msg->toArray()
+            ];
+
+        }else{
+            $response = [
+                'errno' => 50001,
+                'msg'   => '服务器异常，请联系管理员'
+            ];
+        }
+
+        die( json_encode($response));
+
+    }
+
+
 }
