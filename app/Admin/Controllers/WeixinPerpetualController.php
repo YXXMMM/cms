@@ -86,7 +86,7 @@ class WeixinPerpetualController extends Controller
         $grid = new Grid(new WeixinPerpetual);
 
         $grid->id('Id');
-        $grid->count('count');
+        $grid->count('contentt');
 
         return $grid;
     }
