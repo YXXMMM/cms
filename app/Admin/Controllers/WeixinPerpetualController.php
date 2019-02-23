@@ -86,14 +86,7 @@ class WeixinPerpetualController extends Controller
         $grid = new Grid(new WeixinPerpetual);
 
         $grid->id('Id');
-        $grid->openid('Openid');
-        $grid->add_time('Add time');
-        $grid->msg_type('Msg type');
-        $grid->media_id('Media id');
-        $grid->format('Format');
-        $grid->msg_id('Msg id');
-        $grid->local_file_name('Local file name');
-        $grid->local_file_path('Local file path');
+        $grid->count('count');
 
         return $grid;
     }
