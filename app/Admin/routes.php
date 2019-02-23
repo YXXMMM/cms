@@ -18,7 +18,7 @@ Route::group([
     $router->resource('/media',WeixinMediaController::class);//素材管理
     $router->resource('/groupsend',WeixinPerpetualController::class);//群发
     $router->post('/groupsend','WeixinPerpetualController@sendTextAll');//群发
-    
+    $router->resource('/tp',WeixinTpController::class);//群发
     $router->post('/tp','WeixinTpController@formTest');
 
 });
