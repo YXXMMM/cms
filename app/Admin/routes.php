@@ -17,7 +17,7 @@ Route::group([
     $router->resource('/wxusers',WxUsersController::class);//微信用户管理
     $router->resource('/media',WeixinMediaController::class);//素材管理
     $router->resource('/groupsend',WeixinPerpetualController::class);//群发
-
+    $router->post('/groupsend','WeixinPerpetualController@sendTextAll');//群发
     $router->get('/weixin/sendmsg','WeixinController@form');
     $router->post('/weixin/sendmsg','WeixinController@form');
 
