@@ -102,14 +102,7 @@ class WeixinPerpetualController extends Controller
         $show = new Show(WeixinPerpetual::findOrFail($id));
 
         $show->id('Id');
-        $show->openid('Openid');
-        $show->add_time('Add time');
-        $show->msg_type('Msg type');
-        $show->media_id('Media id');
-        $show->format('Format');
-        $show->msg_id('Msg id');
-        $show->local_file_name('Local file name');
-        $show->local_file_path('Local file path');
+        $show->content('content');
 
         return $show;
     }
@@ -123,23 +116,9 @@ class WeixinPerpetualController extends Controller
     {
         $form = new Form(new WeixinPerpetual);
         $form->textarea('content','群发内容(只能文本)');
-        //$form->file('上传图片');
-//        $form->text('openid', 'Openid');
-//        $form->number('add_time', 'Add time');
-//        $form->text('msg_type', 'Msg type');
-//        $form->text('media_id', 'Media id');
-//        $form->text('format', 'Format');
-//        $form->text('msg_id', 'Msg id');
-//        $form->text('local_file_name', 'Local file name');
-//        $form->text('local_file_path', 'Local file path');
 
         return $form;
     }
-//    protected function forms(){
-//        $form = new Form(new WeixinPerpetual);
-//        $form->file('上传图片');
-//        return $form;
-//    }
     /**
      * 群发消息
      */
