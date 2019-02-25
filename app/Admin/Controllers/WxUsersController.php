@@ -203,7 +203,7 @@ class WxUsersController extends Controller
     public function wx_huiliao(Request $request)
     {
         $openid=$request->input('openid');
-        $new=WeixinChatModel::orderBy('add_time','asc')->where(['opebid'=>$openid])->get();
+        $new=WeixinChatModel::orderBy('add_time','asc')->where(['openid'=>$openid])->get();
         echo json_encode($new);
     }
 
