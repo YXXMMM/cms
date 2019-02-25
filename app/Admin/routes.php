@@ -21,9 +21,9 @@ Route::group([
     $router->resource('/tp',WeixinTpController::class);//群发
     $router->post('/tp','WeixinTpController@formTest');
 
-    $router->post('/wxusers/hui','WeixinController@huiliao');
-    $router->post('/wxusers/liao','WeixinController@wx_huiliao');
-    $router->get('/wxusers/create?user_id=($user_id)','WeixinController@create');
+    $router->post('/wxusers/hui','WxUsersController@huiliao');
+    $router->post('/wxusers/liao','WxUsersController@wx_huiliao');
+    $router->get('/wxusers/create?user_id=($user_id)','WxUsersController@create');
 
 
 });
