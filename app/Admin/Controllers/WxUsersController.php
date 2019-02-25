@@ -11,6 +11,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Form;
 use App\Model\UsersModel;
 use App\Model\WeixinChatModel;
+use App\Model\WeixinUser;
 use GuzzleHttp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
