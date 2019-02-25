@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 
 class WxUsersController extends Controller
 {
-    protected $redis_weixin_axxess_token = 'str:weixin_access_token';
+    protected $redis_weixin_access_token = 'str:weixin_access_token';
     public function index(Content $content)
     {
         return $content
