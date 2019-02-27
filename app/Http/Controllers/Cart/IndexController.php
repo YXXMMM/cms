@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\GoodsModel;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -38,7 +39,7 @@ class IndexController extends Controller
         $cart_goods = CartModel::where(['uid'=>$this->uid])->get()->toArray();
 
         if(empty($cart_goods)){
-            header("Refresh:3;url=/goods");
+            header("Refresh:2;url=/goods");
             die("购物车是空的");
         }
 
