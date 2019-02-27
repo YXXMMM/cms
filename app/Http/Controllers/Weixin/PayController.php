@@ -200,8 +200,7 @@ class PayController extends Controller
                 $order_sn =$xml->out_trade_no ;     //商户订单号
                 $info = [
                     'is_pay'        => 1,       //支付状态  0未支付 1已支付
-                    'pay_amount'    => $_POST['total_amount'] * 100,    //支付金额
-                    'pay_time'      => strtotime($_POST['gmt_payment']), //支付时间
+                    'pay_time'      => time(), //支付时间
                     'plat'          => 2,      //平台编号 1支付宝 2微信
                 ];
 
