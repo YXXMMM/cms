@@ -14,7 +14,7 @@
                     <td>{{$v['order_sn']}}</td>
                     <td>{{date('Y-m-d H:i:s',$v['add_time'])}}</td>
                     <td>{{$v['order_amount']/100}}</td>
-                    <td><a href="/pay/o/{{$v['id']}}"  class="btn btn-info">去支付</a>||<a href="/order/del/{{$v['id']}}" class="del_goods">删除</a></td>
+                    <td><a href="/pay/o/{{$v['id']}}"  class="btn btn-info">支付宝支付</a>||<a href="/weixin/o/{{$v['id']}}"  class="btn btn-info">微信支付</a>||<a href="/order/del/{{$v['id']}}" class="del_goods">删除</a></td>
                 </tr>
             @endforeach
         </table>

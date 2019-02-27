@@ -14,13 +14,25 @@ class PayController extends Controller
     public $weixin_unifiedorder_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';
     public $weixin_notify_url = 'http://yxm.52self.cn/weixin/pay/notice';     //支付通知回调
 
-    public function test()
+    public function test($id)
     {
+        //验证订单状态 是否已支付 是否是有效订单
+        $order_info = OrderModel::where(['id'=>$id])->first()->toArray();
+
+        //判断订单是否已被支付
+        if($order_info['is_pay']==1){
+            die("订单已支付，请勿重复支付");
+        }
+        //判断订单是否已被删除
+        if($order_info['is_delete']==1){
+            die("订单已被删除，无法支付");
+        }
 
 
         //
         $total_fee = 1;         //用户要支付的总金额
-        $order_id = OrderModel::generateOrderSN();
+//        $order_sn = OrderModel::where(['order_sn'=>$order_info['order_sn']])->select();
+//        print_r($order_sn);die;
 
         $order_info = [
             'appid'         =>  env('WEIXIN_APPID_0'),      //微信支付绑定的服务号的APPID
@@ -28,7 +40,7 @@ class PayController extends Controller
             'nonce_str'     => str_random(16),             // 随机字符串
             'sign_type'     => 'MD5',
             'body'          => '测试订单-'.mt_rand(1111,9999) . str_random(6),
-            'out_trade_no'  => $order_id,                       //本地订单号
+            'out_trade_no'  => $order_info['order_sn'],                       //本地订单号
             'total_fee'     => $total_fee,
             'spbill_create_ip'  => $_SERVER['REMOTE_ADDR'],     //客户端IP
             'notify_url'    => $this->weixin_notify_url,        //通知回调地址
@@ -56,7 +68,8 @@ class PayController extends Controller
 //		echo 'trade_type: '.$data->trade_type;echo '<br>';
         $url=$data->code_url;
         $arr=[
-            'url'=>$url
+            'url'=>$url,
+            'id'=>$id
         ];
         return view("weixin.ewm",$arr);
 //        die;
@@ -182,6 +195,17 @@ class PayController extends Controller
 
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
+                //更新订单状态
+                $id = $_POST['out_trade_no'];     //商户订单号
+                $info = [
+                    'is_pay'        => 1,       //支付状态  0未支付 1已支付
+                    'pay_amount'    => $_POST['total_amount'] * 100,    //支付金额
+                    'pay_time'      => strtotime($_POST['gmt_payment']), //支付时间
+                    'plat_oid'      => $_POST['trade_no'],      //支付宝订单号
+                    'plat'          => 2,      //平台编号 1支付宝 2微信
+                ];
+
+                OrderModel::where(['id'=>$id])->update($info);
 
             }else{
                 //TODO 验签失败
