@@ -17,16 +17,17 @@ class PayController extends Controller
     public function test($id)
     {
         //验证订单状态 是否已支付 是否是有效订单
-        $order_info = OrderModel::where(['id'=>$id])->first()->toArray();
+        $orderInfo = OrderModel::where(['id'=>$id])->first()->toArray();
 
         //判断订单是否已被支付
-        if($order_info['is_pay']==1){
+        if($orderInfo['is_pay']==1){
             die("订单已支付，请勿重复支付");
         }
         //判断订单是否已被删除
-        if($order_info['is_delete']==1){
+        if($orderInfo['is_delete']==1){
             die("订单已被删除，无法支付");
         }
+//        echo $order_info['order_sn'];die;
 
 
         //
@@ -40,7 +41,7 @@ class PayController extends Controller
             'nonce_str'     => str_random(16),             // 随机字符串
             'sign_type'     => 'MD5',
             'body'          => '测试订单-'.mt_rand(1111,9999) . str_random(6),
-            'out_trade_no'  => $order_info['order_sn'],                       //本地订单号
+            'out_trade_no'  => $orderInfo['order_sn'],                       //本地订单号
             'total_fee'     => $total_fee,
             'spbill_create_ip'  => $_SERVER['REMOTE_ADDR'],     //客户端IP
             'notify_url'    => $this->weixin_notify_url,        //通知回调地址
@@ -196,7 +197,7 @@ class PayController extends Controller
             if($sign){       //签名验证成功
                 //TODO 逻辑处理  订单状态更新
                 //更新订单状态
-                $order_sn = $xml->out_trade_no;     //商户订单号
+                $order_sn =$xml->out_trade_no ;     //商户订单号
                 $info = [
                     'is_pay'        => 1,       //支付状态  0未支付 1已支付
                     'pay_amount'    => $_POST['total_amount'] * 100,    //支付金额
