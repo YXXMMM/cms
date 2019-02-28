@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Weixin;
 
 use App\Model\WeixinChatModel;
 use App\Model\WeixinUser;
+use App\Model\WxUsersModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -561,7 +562,7 @@ class WeixinController extends Controller
     /**
      * 接收code
      */
-    public function getCode()
+    public function getCode(Request $request)
     {
         $code = $_GET['code'];          // code
         $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code=' . $code . '&grant_type=authorization_code';
@@ -591,6 +592,10 @@ class WeixinController extends Controller
             ];
             var_dump($updatedate);
             WxUserModel::where($usersWhere)->update($updatedate);
+            $user_id=$res['id'];
+            $request->session()->put('id',$user_id);
+            header('refresh:2;url="/goods"');
+
         } else {
             $WeixinDate = [
                 'nickname' => $user_arr['nickname'],
@@ -602,7 +607,10 @@ class WeixinController extends Controller
                 'addtime' => time()
             ];
             var_dump($user_arr);
-            $use_id = WxUserModel::insertGetId($WeixinDate);
+            $user_id = WxUserModel::insertGetId($WeixinDate);
+
+            $request->session()->put('id',$user_id);
+            header('refresh:2;url="/goods"');
         }
 
     }
