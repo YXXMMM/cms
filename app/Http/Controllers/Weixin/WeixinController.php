@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Weixin;
 
 use App\Model\WeixinChatModel;
 use App\Model\WeixinUser;
-use App\Model\WxUsersModel;
+use App\Model\WxUserModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
