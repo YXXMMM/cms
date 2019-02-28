@@ -582,6 +582,7 @@ class WeixinController extends Controller
             'openid'=> $user_arr['openid'],
         ];
         $res=WxUserModel::where($usersWhere)->first();
+        var_dump($res);exit;
         if($res) {
             //用户已存在
             $updatedate = [
@@ -593,7 +594,6 @@ class WeixinController extends Controller
                 'unionid' => $user_arr['unionid'],
                 'uptime' => time()
             ];
-            var_dump($updatedate);
             WxUserModel::where($usersWhere)->update($updatedate);
             $user_id=$res['id'];
             $request->session()->put('id',$user_id);
@@ -611,7 +611,6 @@ class WeixinController extends Controller
                 'addtime'=>time()
             ];
             $user_id=WxUserModel::insertGetId($WeixinDate);
-            var_dump($user_id);exit;
             $request->session()->put('id',$user_id);
             header('refresh:2;url=/user/center');
 
