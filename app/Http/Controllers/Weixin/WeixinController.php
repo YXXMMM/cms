@@ -610,9 +610,8 @@ class WeixinController extends Controller
                 'openid'=>$user_arr['openid'],
                 'addtime'=>time()
             ];
-            var_dump($user_arr);
             $user_id=WxUserModel::insertGetId($WeixinDate);
-
+            var_dump($user_id);exit;
             $request->session()->put('id',$user_id);
             header('refresh:2;url=/user/center');
 
