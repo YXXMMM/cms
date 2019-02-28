@@ -564,22 +564,25 @@ class WeixinController extends Controller
      */
     public function getCode(Request $request)
     {
+//        echo '<pre>';print_r($_GET);echo '</pre>';
+//        $code = $_GET['code'];
+//        echo 'code: '.$code;
         $code = $_GET['code'];          // code
-        $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code=' . $code . '&grant_type=authorization_code';
+        $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code='.$code.'&grant_type=authorization_code';
         $token_json = file_get_contents($token_url);
-        $token_arr = json_decode($token_json, true);
+        $token_arr = json_decode($token_json,true);
         $access_token = $token_arr['access_token'];
         $openid = $token_arr['openid'];
-//   获取用户信息
-        $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token=' . $access_token . '&openid=' . $openid . '&lang=zh_CN';
+        //   获取用户信息
+        $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $user_json = file_get_contents($user_info_url);
-        $user_arr = json_decode($user_json, true);
-//用户信息存入数据库
-        $usersWhere = [
-            'openid' => $user_arr['openid'],
+        $user_arr = json_decode($user_json,true);
+        //用户信息存入数据库
+        $usersWhere=[
+            'openid'=> $user_arr['openid'],
         ];
-        $res = WxUserModel::where($usersWhere)->first();
-        if ($res) {
+        $res=WxUserModel::where($usersWhere)->first();
+        if($res) {
             //用户已存在
             $updatedate = [
                 'openid' => $user_arr['openid'],
@@ -594,24 +597,27 @@ class WeixinController extends Controller
             WxUserModel::where($usersWhere)->update($updatedate);
             $user_id=$res['id'];
             $request->session()->put('id',$user_id);
-            header('refresh:2;url="/goods"');
+            header('refresh:2;url=/user/center');
 
-        } else {
-            $WeixinDate = [
-                'nickname' => $user_arr['nickname'],
-                'sex' => $user_arr['sex'],
-                'language' => $user_arr['language'],
-                'headimgurl' => $user_arr['headimgurl'],
-                'unionid' => $user_arr['unionid'],
-                'openid' => $user_arr['openid'],
-                'addtime' => time()
+
+        }else{
+            $WeixinDate=[
+                'nickname'=>$user_arr['nickname'],
+                'sex'=>$user_arr['sex'],
+                'language'=>$user_arr['language'],
+                'headimgurl'=>$user_arr['headimgurl'],
+                'unionid'=>$user_arr['unionid'],
+                'openid'=>$user_arr['openid'],
+                'addtime'=>time()
             ];
             var_dump($user_arr);
-            $user_id = WxUserModel::insertGetId($WeixinDate);
+            $user_id=WxUserModel::insertGetId($WeixinDate);
 
             $request->session()->put('id',$user_id);
-            header('refresh:2;url="/goods"');
+            header('refresh:2;url=/user/center');
+
         }
+
 
     }
 }
