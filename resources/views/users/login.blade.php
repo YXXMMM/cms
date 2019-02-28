@@ -15,7 +15,9 @@
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button><br>
+        <a href="{{ url('/weixin/login') }}" class="btn btn-lg btn-primary btn-block" type="submit">微信登录</a><br>
+        <a href="{{ url('/user/reg') }}" class="btn btn-lg btn-primary btn-block" type="submit">注册</a>
     </form>
 @endsection
 

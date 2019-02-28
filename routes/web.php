@@ -57,6 +57,9 @@ Route::get('/view/test2','Test\TestController@viewTest2');
 Route::get('/user/reg','User\UserController@reg');
 Route::post('/user/reg','User\UserController@doReg');
 
+Route::get('/weixin/login','Weixin\WeixinController@login');            //微信登录
+Route::get('/weixin/getcode','Weixin\WeixinController@getCode');        //接收code
+
 Route::get('/user/login','User\UserController@login');           //用户登录
 Route::post('/user/login','User\UserController@doLogin');        //用户登录
 Route::get('/user/center','User\UserController@center');        //个人中心
@@ -86,8 +89,8 @@ Route::get('/cartindex','Cart\IndexController@index')->middleware('check.login.t
 Route::get('/cart/del2/{goods_id}','Cart\IndexController@del2')->middleware('check.login.token');
 
 //商品
-Route::get('/goods/{goods_id}','Goods\IndexController@index');          //商品详情
-Route::get('/goods','Goods\IndexController@indexList');          //商品展示
+Route::get('/goods/{goods_id}','Goods\IndexController@index');                  //商品详情
+Route::get('/goods','Goods\IndexController@indexList');                         //商品展示
 Route::post('/goods/indexList2','Goods\IndexController@indexList2');          //商品搜索展示
 
 
