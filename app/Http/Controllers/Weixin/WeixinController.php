@@ -573,7 +573,7 @@ class WeixinController extends Controller
         $token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe24f70961302b5a5&secret=0f121743ff20a3a454e4a12aeecef4be&code='.$code.'&grant_type=authorization_code';
         $token_json = file_get_contents($token_url);
         $token_arr = json_decode($token_json,true);
-        var_dump($token_arr);exit;
+//        var_dump($token_arr);exit;
         $access_token = $token_arr['access_token'];
         $openid = $token_arr['openid'];
         //   获取用户信息
@@ -586,39 +586,39 @@ class WeixinController extends Controller
             'openid'=> $user_arr['openid'],
         ];
         $res=WxUserModel::where($usersWhere)->first();
-        var_dump($res);exit;
-//        if($res) {
-//            //用户已存在
-//            $updatedate = [
-//                'openid' => $user_arr['openid'],
-//                'nickname' => $user_arr['nickname'],
-//                'sex' => $user_arr['sex'],
-//                'language' => $user_arr['language'],
-//                'headimgurl' => $user_arr['headimgurl'],
-//                'unionid' => $user_arr['unionid'],
-//                'uptime' => time()
-//            ];
-//            WxUserModel::where($usersWhere)->update($updatedate);
-//            $user_id=$res['id'];
-//            $request->session()->put('id',$user_id);
-//            header('refresh:2;url=/user/center');
-//
-//
-//        }else{
-//            $WeixinDate=[
-//                'nickname'=>$user_arr['nickname'],
-//                'sex'=>$user_arr['sex'],
-//                'language'=>$user_arr['language'],
-//                'headimgurl'=>$user_arr['headimgurl'],
-//                'unionid'=>$user_arr['unionid'],
-//                'openid'=>$user_arr['openid'],
-//                'addtime'=>time()
-//            ];
-//            $user_id=WxUserModel::insertGetId($WeixinDate);
-//            $request->session()->put('id',$user_id);
-//            header('refresh:2;url=/user/center');
-//
-//        }
+//        var_dump($res);exit;
+        if($res) {
+            //用户已存在
+            $updatedate = [
+                'openid' => $user_arr['openid'],
+                'nickname' => $user_arr['nickname'],
+                'sex' => $user_arr['sex'],
+                'language' => $user_arr['language'],
+                'headimgurl' => $user_arr['headimgurl'],
+                'unionid' => $user_arr['unionid'],
+                'uptime' => time()
+            ];
+            WxUserModel::where($usersWhere)->update($updatedate);
+            $user_id=$res['id'];
+            $request->session()->put('id',$user_id);
+            header('refresh:2;url=/user/center');
+
+
+        }else{
+            $WeixinDate=[
+                'nickname'=>$user_arr['nickname'],
+                'sex'=>$user_arr['sex'],
+                'language'=>$user_arr['language'],
+                'headimgurl'=>$user_arr['headimgurl'],
+                'unionid'=>$user_arr['unionid'],
+                'openid'=>$user_arr['openid'],
+                'addtime'=>time()
+            ];
+            $user_id=WxUserModel::insertGetId($WeixinDate);
+            $request->session()->put('id',$user_id);
+            header('refresh:2;url=/user/center');
+
+        }
 
 
 
