@@ -577,44 +577,47 @@ class WeixinController extends Controller
         $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $user_json = file_get_contents($user_info_url);
         $user_arr = json_decode($user_json,true);
+        var_dump($user_arr);exit;
         //用户信息存入数据库
         $usersWhere=[
             'openid'=> $user_arr['openid'],
         ];
         $res=WxUserModel::where($usersWhere)->first();
         var_dump($res);exit;
-        if($res) {
-            //用户已存在
-            $updatedate = [
-                'openid' => $user_arr['openid'],
-                'nickname' => $user_arr['nickname'],
-                'sex' => $user_arr['sex'],
-                'language' => $user_arr['language'],
-                'headimgurl' => $user_arr['headimgurl'],
-                'unionid' => $user_arr['unionid'],
-                'uptime' => time()
-            ];
-            WxUserModel::where($usersWhere)->update($updatedate);
-            $user_id=$res['id'];
-            $request->session()->put('id',$user_id);
-            header('refresh:2;url=/user/center');
+//        if($res) {
+//            //用户已存在
+//            $updatedate = [
+//                'openid' => $user_arr['openid'],
+//                'nickname' => $user_arr['nickname'],
+//                'sex' => $user_arr['sex'],
+//                'language' => $user_arr['language'],
+//                'headimgurl' => $user_arr['headimgurl'],
+//                'unionid' => $user_arr['unionid'],
+//                'uptime' => time()
+//            ];
+//            WxUserModel::where($usersWhere)->update($updatedate);
+//            $user_id=$res['id'];
+//            $request->session()->put('id',$user_id);
+//            header('refresh:2;url=/user/center');
+//
+//
+//        }else{
+//            $WeixinDate=[
+//                'nickname'=>$user_arr['nickname'],
+//                'sex'=>$user_arr['sex'],
+//                'language'=>$user_arr['language'],
+//                'headimgurl'=>$user_arr['headimgurl'],
+//                'unionid'=>$user_arr['unionid'],
+//                'openid'=>$user_arr['openid'],
+//                'addtime'=>time()
+//            ];
+//            $user_id=WxUserModel::insertGetId($WeixinDate);
+//            $request->session()->put('id',$user_id);
+//            header('refresh:2;url=/user/center');
+//
+//        }
 
 
-        }else{
-            $WeixinDate=[
-                'nickname'=>$user_arr['nickname'],
-                'sex'=>$user_arr['sex'],
-                'language'=>$user_arr['language'],
-                'headimgurl'=>$user_arr['headimgurl'],
-                'unionid'=>$user_arr['unionid'],
-                'openid'=>$user_arr['openid'],
-                'addtime'=>time()
-            ];
-            $user_id=WxUserModel::insertGetId($WeixinDate);
-            $request->session()->put('id',$user_id);
-            header('refresh:2;url=/user/center');
-
-        }
 
 
     }
