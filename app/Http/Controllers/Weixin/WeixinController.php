@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Weixin;
 
-use App\Model\UserModel;
+
 use App\Model\WeixinChatModel;
 use App\Model\WeixinUser;
 use App\Model\WxUserModel;
