@@ -147,3 +147,8 @@ Route::get('/weixin/chat/get_msg','Weixin\WeixinController@getChatMsg');     //�
 //微信支付
 Route::get('/weixin/pay/test','Weixin\PayController@test');     //微信支付测试
 Route::post('/weixin/pay/notice','Weixin\PayController@notice');     //微信支付通知回调
+
+
+//微信 JSSDK
+
+Route::get('/weixin/jssdk/test','Weixin\WeixinController@jssdkTest');       // 测试

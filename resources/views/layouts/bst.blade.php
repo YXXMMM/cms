@@ -45,7 +45,7 @@
                     </li>
                     <li><a href="/cartindex">购物车</a></li>
                     <li><a href="/user/login">登录</a></li>
-                    <li><a href="/user/logou">退出</a></li>
+                    <li><a href="/user/login">退出</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

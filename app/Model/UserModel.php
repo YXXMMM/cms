@@ -8,5 +8,4 @@ class UserModel extends Model
 {
     //
     public $table = 'p_user';
-    public $timestamps = false;
 }
