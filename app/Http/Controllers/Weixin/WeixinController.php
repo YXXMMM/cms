@@ -580,14 +580,14 @@ class WeixinController extends Controller
         $user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $user_json = file_get_contents($user_info_url);
         $user_arr = json_decode($user_json,true);
-        var_dump($user_arr);exit;
+//        var_dump($user_arr);exit;
         //用户信息存入数据库
         $usersWhere=[
             'openid'=> $user_arr['openid'],
         ];
         $res=WxUserModel::where($usersWhere)->first();
         if($res) {
-            echo 1;die;
+//            echo 1;die;
             //用户已存在b
             $updatedate = [
                 'openid' => $user_arr['openid'],
@@ -605,7 +605,7 @@ class WeixinController extends Controller
 
 
         }else{
-            echo 2;die;
+//            echo 2;die;
             $WeixinDate=[
                 'nickname'=>$user_arr['nickname'],
                 'sex'=>$user_arr['sex'],
