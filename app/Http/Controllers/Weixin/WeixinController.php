@@ -586,8 +586,8 @@ class WeixinController extends Controller
             'openid'=> $user_arr['openid'],
         ];
         $res=WxUserModel::where($usersWhere)->first();
-        var_dump($res);exit;
         if($res) {
+            echo 1;die;
             //用户已存在b
             $updatedate = [
                 'openid' => $user_arr['openid'],
@@ -605,6 +605,7 @@ class WeixinController extends Controller
 
 
         }else{
+            echo 2;die;
             $WeixinDate=[
                 'nickname'=>$user_arr['nickname'],
                 'sex'=>$user_arr['sex'],
